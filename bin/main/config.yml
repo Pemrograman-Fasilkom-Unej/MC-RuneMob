@@ -1,0 +1,294 @@
+# RuneMobs Configuration
+config-version: "240807-prod"
+rune_duration_minutes: 60 # Duration in minutes before an engraved rune decays
+
+auto_raid:
+  enabled: true
+  interval_minutes: 60
+  raid_id: "eikthyr"
+
+# Boss-specific rewards for all raid participants (within 50 blocks)
+# Each boss drops a specific rune + emerald blocks to every participant
+# Eikthyr has no special rewards (army raid)
+boss_rewards:
+  reward_radius: 50  # blocks from boss death location
+  emerald_blocks: 3  # emerald blocks given per participant
+  rune_mapping:
+    forgotten_king: "ASCENDED_RETRIBUTION"
+    corrupted_guardian: "ASCENDED_SOLAR_BLESSING"
+    leviathan: "ASCENDED_STORMCALLER"
+    plague_doctor: "ASCENDED_VENOM"
+    nether_warlord: "ASCENDED_PHOENIX_CORE"
+    miner_titan: "ASCENDED_FURNACE"
+    moonlight_stalker: "ASCENDED_BERSERK"
+    soul_collector: "ASCENDED_VAMPIRISM"
+
+rarities:
+  rare:
+    chance: 0.15 # 15% chance for a spawned mob to be Rare
+    name_format: "&9[Rare] &f{mob}"
+    health_multiplier: 1.5
+    damage_multiplier: 1.25
+    emerald_drop:
+      min: 1
+      max: 4
+  epic:
+    chance: 0.05 # 5% chance
+    name_format: "&5[Epic] &f{mob}"
+    health_multiplier: 2.5
+    damage_multiplier: 1.5
+    emerald_drop:
+      min: 4
+      max: 8
+    rune_drop_chance: 0.25 # 25% chance for epic to drop a Rune
+  legendary:
+    chance: 0.01 # 1% chance
+    name_format: "&6[Legendary] &f{mob}"
+    health_multiplier: 5.0
+    damage_multiplier: 2.0
+    emerald_drop:
+      min: 8
+      max: 16
+    rune_drop_chance: 1.0 # 100% chance for legendary to drop a Rune
+
+ender_dragon:
+  enabled: true
+  health_per_player_multiplier: 0.5 # Adds +50% of base health per extra player
+  damage_per_player_multiplier: 0.25 # Adds +25% of base damage per extra player
+  crystal_respawn_seconds: 60
+  fireball_explosion_power: 3.0
+  aggro_enderman_interval_ticks: 300 # 15 seconds
+  crystal_break_debuff_duration_ticks: 100 # 5 seconds
+
+auto_raid:
+  enabled: false
+  interval_minutes: 60
+  raid_id: "eikthyr"
+
+raids:
+  eikthyr:
+    title: "&cArmy of Eikthyr Raid"
+    bar_color: RED
+    wave_interval: 45 # seconds between waves
+    duration_minutes: 5 # Time before raid despawns
+    scale_with_players: true # Multiply spawned mobs by online players
+    waves:
+      1:
+        - type: WOLF
+          rarity: rare
+          amount: 5
+          name: "&4Angry Wolf"
+        - type: PIGLIN
+          rarity: epic
+          amount: 2
+          name: "&4Orc"
+          equipment:
+            helmet: LEATHER_HELMET:BLACK
+            chestplate: LEATHER_CHESTPLATE:BLACK
+            main_hand: CROSSBOW
+      2:
+        - type: WOLF
+          rarity: epic
+          amount: 6
+          name: "&4Angry Wolf"
+        - type: PIGLIN
+          rarity: epic
+          amount: 3
+          name: "&4Orc"
+      3:
+        - type: PIGLIN
+          rarity: epic
+          amount: 5
+          name: "&4Orc"
+        - type: WOLF
+          rarity: epic
+          amount: 3
+          name: "&4Angry Wolf"
+      4:
+        - type: PIGLIN
+          rarity: epic
+          amount: 4
+          name: "&6Orc Rider"
+          baby: true
+          mount: WOLF
+          equipment:
+            helmet: NETHERITE_HELMET
+            main_hand: STONE_AXE
+        - type: PIGLIN
+          rarity: epic
+          amount: 4
+          name: "&4Orc"
+          equipment:
+            helmet: LEATHER_HELMET:BLACK
+            chestplate: LEATHER_CHESTPLATE:BLACK
+            main_hand: STONE_SWORD
+      5:
+        - type: PIGLIN_BRUTE
+          rarity: legendary
+          amount: 1
+          name: "&6Orc Chieftain"
+          equipment:
+            helmet: NETHERITE_HELMET
+            chestplate: NETHERITE_CHESTPLATE
+            main_hand: STONE_AXE
+
+  forgotten_king:
+    title: "&4The Forgotten King Raid"
+    bar_color: PURPLE
+    wave_interval: 10
+    duration_minutes: 10
+    scale_with_players: false
+    waves:
+      1:
+        - type: WITHER_SKELETON
+          rarity: legendary
+          amount: 1
+          name: "&4The Forgotten King"
+          is_boss: true
+          ai: "forgotten_king"
+          equipment:
+            helmet: GOLDEN_HELMET
+            chestplate: GOLDEN_CHESTPLATE
+            main_hand: IRON_SWORD
+
+  corrupted_guardian:
+    title: "&2The Corrupted Forest Raid"
+    bar_color: GREEN
+    wave_interval: 10
+    duration_minutes: 10
+    scale_with_players: false
+    waves:
+      1:
+        - type: IRON_GOLEM
+          rarity: legendary
+          amount: 1
+          name: "&2Corrupted Guardian"
+          is_boss: true
+          ai: "corrupted_guardian"
+
+  leviathan:
+    title: "&bThe Deep Sea Leviathan Raid"
+    bar_color: BLUE
+    wave_interval: 10
+    duration_minutes: 10
+    scale_with_players: true
+    waves:
+      1:
+        - type: ELDER_GUARDIAN
+          rarity: legendary
+          amount: 1
+          name: "&bThe Deep Sea Leviathan"
+          is_boss: true
+          ai: "leviathan"
+      2:
+        - type: DROWNED
+          rarity: epic
+          amount: 4
+          name: "&bLost Sailor"
+      3:
+        - type: DROWNED
+          rarity: epic
+          amount: 4
+          name: "&bLost Sailor"
+
+  plague_doctor:
+    title: "&2The Plague Doctor Raid"
+    bar_color: GREEN
+    wave_interval: 10
+    duration_minutes: 10
+    scale_with_players: false
+    waves:
+      1:
+        - type: WITCH
+          rarity: legendary
+          amount: 1
+          name: "&2The Plague Doctor"
+          is_boss: true
+          ai: "plague_doctor"
+
+  nether_warlord:
+    title: "&4The Nether Warlord Raid"
+    bar_color: RED
+    wave_interval: 10
+    duration_minutes: 10
+    scale_with_players: false
+    waves:
+      1:
+        - type: SKELETON
+          rarity: legendary
+          amount: 1
+          name: "&cThe Nether Warlord"
+          is_boss: true
+          ai: "nether_warlord"
+          equipment:
+            helmet: CHAINMAIL_HELMET
+            chestplate: CHAINMAIL_CHESTPLATE
+            main_hand: NETHERITE_SWORD
+
+  miner_titan:
+    title: "&6The Miner Titan Raid"
+    bar_color: YELLOW
+    wave_interval: 30
+    duration_minutes: 10
+    scale_with_players: false
+    waves:
+      1:
+        - type: HUSK
+          rarity: legendary
+          amount: 1
+          name: "&6The Miner Titan"
+          is_boss: true
+          ai: "miner_titan"
+          equipment:
+            helmet: IRON_HELMET
+            main_hand: NETHERITE_PICKAXE
+      2:
+        - type: BAT
+          rarity: rare
+          amount: 4
+          name: "&6Titan Leech"
+      3:
+        - type: BAT
+          rarity: rare
+          amount: 4
+          name: "&6Titan Leech"
+      4:
+        - type: BAT
+          rarity: epic
+          amount: 6
+          name: "&6Titan Leech"
+
+  moonlight_stalker:
+    title: "&8The Moonlight Stalker Raid"
+    bar_color: WHITE
+    wave_interval: 10
+    duration_minutes: 10
+    scale_with_players: false
+    waves:
+      1:
+        - type: VINDICATOR
+          rarity: legendary
+          amount: 1
+          name: "&8The Moonlight Stalker"
+          is_boss: true
+          ai: "moonlight_stalker"
+          equipment:
+            helmet: CARVED_PUMPKIN
+            main_hand: IRON_AXE
+
+  soul_collector:
+    title: "&5The Soul Collector Raid"
+    bar_color: PURPLE
+    wave_interval: 10
+    duration_minutes: 10
+    scale_with_players: false
+    waves:
+      1:
+        - type: EVOKER
+          rarity: legendary
+          amount: 1
+          name: "&5The Soul Collector"
+          is_boss: true
+          ai: "soul_collector"
+          equipment:
+            main_hand: TOTEM_OF_UNDYING

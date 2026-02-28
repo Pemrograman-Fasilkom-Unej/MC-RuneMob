@@ -1,0 +1,71 @@
+﻿To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Reusing configuration cache.
+> Task :clean
+> Task :processTestResources NO-SOURCE
+> Task :processResources
+
+> Task :compileJava
+.\gradlew.bat : D:\App Installed\MCS\plugins\RuneMobs\src\m
+ain\java\com\darkun7\runemobs\RuneApplyListener.java:85: 
+warning: [removal] 
+AttributeModifier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull 
+String,double,@org.jetbrains.annotations.NotNull 
+Operation,@org.jetbrains.annotations.Nullable 
+EquipmentSlot) in AttributeModifier has been deprecated 
+and marked for removal
+At line:1 char:1
++ .\gradlew.bat clean build --no-daemon > 
+build_output_clean.log 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\App Instal 
+   le...ked for removal:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+                        AttributeModifier mod = new 
+AttributeModifier(UUID.randomUUID(), "rune_life", 8.0,
+                                                ^
+D:\App Installed\MCS\plugins\RuneMobs\src\main\java\com\dar
+kun7\runemobs\RuneApplyListener.java:89: warning: 
+[removal] 
+AttributeModifier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull 
+String,double,@org.jetbrains.annotations.NotNull 
+Operation,@org.jetbrains.annotations.Nullable 
+EquipmentSlot) in AttributeModifier has been deprecated 
+and marked for removal
+                        AttributeModifier mod = new 
+AttributeModifier(UUID.randomUUID(), "rune_colossus", 0.5,
+                                                ^
+D:\App Installed\MCS\plugins\RuneMobs\src\main\java\com\dar
+kun7\runemobs\RuneApplyListener.java:100: warning: 
+[removal] 
+AttributeModifier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull 
+String,double,@org.jetbrains.annotations.NotNull 
+Operation,@org.jetbrains.annotations.Nullable 
+EquipmentSlot) in AttributeModifier has been deprecated 
+and marked for removal
+                    AttributeModifier mod = new 
+AttributeModifier(UUID.randomUUID(), "rune_speed", 0.1,
+                                            ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :classes
+> Task :compileTestJava NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :check UP-TO-DATE
+> Task :jar
+> Task :assemble
+> Task :build
+
+[Incubating] Problems report is available at: file:///D:/App%20Installed/MCS/plugins/RuneMobs/build/reports/problems/problems-report.html
+
+BUILD SUCCESSFUL in 7s
+4 actionable tasks: 4 executed
+Configuration cache entry reused.

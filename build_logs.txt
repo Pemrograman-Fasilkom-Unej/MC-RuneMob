@@ -1,0 +1,236 @@
+﻿Reusing configuration cache.
+
+> Task :compileJava FAILED
+.\gradlew.bat : D:\App Installed\MCS\plugins
+\RuneMobs\src\main\java\com\darkun7\runemobs
+\RuneApplyListener.java:85: warning: 
+[removal] AttributeModifier(@org.jetbrains.a
+nnotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull Stri
+ng,double,@org.jetbrains.annotations.NotNull
+ Operation,@org.jetbrains.annotations.Nullab
+le EquipmentSlot) in AttributeModifier has 
+been deprecated and marked for removal
+At line:1 char:1
++ .\gradlew.bat compileJava 2>&1 | Out-File 
+-Encoding UTF8 build_logs.t ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: 
+    (D:\App Installe...ked for removal:Str  
+  ing) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommand 
+   Error
+ 
+                        AttributeModifier 
+mod = new 
+AttributeModifier(UUID.randomUUID(), 
+"rune_life", 8.0,
+                                            
+    ^
+D:\App Installed\MCS\plugins\RuneMobs\src\ma
+in\java\com\darkun7\runemobs\RuneApplyListen
+er.java:89: warning: [removal] AttributeModi
+fier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull Stri
+ng,double,@org.jetbrains.annotations.NotNull
+ Operation,@org.jetbrains.annotations.Nullab
+le EquipmentSlot) in AttributeModifier has 
+been deprecated and marked for removal
+                        AttributeModifier 
+mod = new 
+AttributeModifier(UUID.randomUUID(), 
+"rune_colossus", 0.5,
+                                            
+    ^
+D:\App Installed\MCS\plugins\RuneMobs\src\ma
+in\java\com\darkun7\runemobs\RuneApplyListen
+er.java:100: warning: [removal] AttributeMod
+ifier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull Stri
+ng,double,@org.jetbrains.annotations.NotNull
+ Operation,@org.jetbrains.annotations.Nullab
+le EquipmentSlot) in AttributeModifier has 
+been deprecated and marked for removal
+                    AttributeModifier mod = 
+new AttributeModifier(UUID.randomUUID(), 
+"rune_speed", 0.1,
+                                            
+^
+D:\App Installed\MCS\plugins\RuneMobs\src\ma
+in\java\com\darkun7\runemobs\vanilla\EnderDr
+agonManager.java:94: error: cannot find 
+symbol
+            if (dragon.getAttribute(Attribut
+e.GENERIC_MAX_HEALTH) != null) {
+                                            
+ ^
+  symbol:   variable GENERIC_MAX_HEALTH
+  location: interface Attribute
+D:\App Installed\MCS\plugins\RuneMobs\src\ma
+in\java\com\darkun7\runemobs\vanilla\EnderDr
+agonManager.java:97: error: cannot find 
+symbol
+                dragon.getAttribute(Attribut
+e.GENERIC_MAX_HEALTH).setBaseValue(newHealth
+);
+                                            
+ ^
+  symbol:   variable GENERIC_MAX_HEALTH
+  location: interface Attribute
+D:\App Installed\MCS\plugins\RuneMobs\src\ma
+in\java\com\darkun7\runemobs\vanilla\EnderDr
+agonManager.java:102: error: cannot find 
+symbol
+            if (dragon.getAttribute(Attribut
+e.GENERIC_ATTACK_DAMAGE) != null) {
+                                            
+ ^
+  symbol:   variable GENERIC_ATTACK_DAMAGE
+  location: interface Attribute
+D:\App Installed\MCS\plugins\RuneMobs\src\ma
+in\java\com\darkun7\runemobs\vanilla\EnderDr
+agonManager.java:105: error: cannot find 
+symbol
+                dragon.getAttribute(Attribut
+e.GENERIC_ATTACK_DAMAGE).setBaseValue(newDam
+age);
+                                            
+ ^
+  symbol:   variable GENERIC_ATTACK_DAMAGE
+  location: interface Attribute
+D:\App Installed\MCS\plugins\RuneMobs\src\ma
+in\java\com\darkun7\runemobs\vanilla\EnderDr
+agonManager.java:238: error: cannot find 
+symbol
+                world.spawnEntity(loc, 
+EntityType.ENDER_CRYSTAL);
+                                            
+     ^
+  symbol:   variable ENDER_CRYSTAL
+  location: class EntityType
+Note: Some input files use or override a 
+deprecated API.
+Note: Recompile with -Xlint:deprecation for 
+details.
+5 errors
+3 warnings
+
+[Incubating] Problems report is available at: file:///D:/App%20Installed/MCS/plugins/RuneMobs/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Compilation failed; see the compiler 
+output below.
+  Note: Recompile with -Xlint:deprecation 
+for details.
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\vanilla\Ender
+DragonManager.java:94: error: cannot find 
+symbol
+              if (dragon.getAttribute(Attrib
+ute.GENERIC_MAX_HEALTH) != null) {
+                                            
+   ^
+    symbol:   variable GENERIC_MAX_HEALTH
+    location: interface Attribute
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\vanilla\Ender
+DragonManager.java:97: error: cannot find 
+symbol
+                  dragon.getAttribute(Attrib
+ute.GENERIC_MAX_HEALTH).setBaseValue(newHeal
+th);
+                                            
+   ^
+    symbol:   variable GENERIC_MAX_HEALTH
+    location: interface Attribute
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\vanilla\Ender
+DragonManager.java:102: error: cannot find 
+symbol
+              if (dragon.getAttribute(Attrib
+ute.GENERIC_ATTACK_DAMAGE) != null) {
+                                            
+   ^
+    symbol:   variable GENERIC_ATTACK_DAMAGE
+    location: interface Attribute
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\vanilla\Ender
+DragonManager.java:105: error: cannot find 
+symbol
+                  dragon.getAttribute(Attrib
+ute.GENERIC_ATTACK_DAMAGE).setBaseValue(newD
+amage);
+                                            
+   ^
+    symbol:   variable GENERIC_ATTACK_DAMAGE
+    location: interface Attribute
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\vanilla\Ender
+DragonManager.java:238: error: cannot find 
+symbol
+                  world.spawnEntity(loc, 
+EntityType.ENDER_CRYSTAL);
+                                            
+       ^
+    symbol:   variable ENDER_CRYSTAL
+    location: class EntityType
+  Note: Some input files use or override a 
+deprecated API.
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\RuneApplyList
+ener.java:85: warning: [removal] AttributeMo
+difier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull Stri
+ng,double,@org.jetbrains.annotations.NotNull
+ Operation,@org.jetbrains.annotations.Nullab
+le EquipmentSlot) in AttributeModifier has 
+been deprecated and marked for removal
+                          AttributeModifier 
+mod = new 
+AttributeModifier(UUID.randomUUID(), 
+"rune_life", 8.0,
+                                            
+      ^
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\RuneApplyList
+ener.java:89: warning: [removal] AttributeMo
+difier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull Stri
+ng,double,@org.jetbrains.annotations.NotNull
+ Operation,@org.jetbrains.annotations.Nullab
+le EquipmentSlot) in AttributeModifier has 
+been deprecated and marked for removal
+                          AttributeModifier 
+mod = new 
+AttributeModifier(UUID.randomUUID(), 
+"rune_colossus", 0.5,
+                                            
+      ^
+  D:\App Installed\MCS\plugins\RuneMobs\src\
+main\java\com\darkun7\runemobs\RuneApplyList
+ener.java:100: warning: [removal] AttributeM
+odifier(@org.jetbrains.annotations.NotNull 
+UUID,@org.jetbrains.annotations.NotNull Stri
+ng,double,@org.jetbrains.annotations.NotNull
+ Operation,@org.jetbrains.annotations.Nullab
+le EquipmentSlot) in AttributeModifier has 
+been deprecated and marked for removal
+                      AttributeModifier mod 
+= new AttributeModifier(UUID.randomUUID(), 
+"rune_speed", 0.1,
+                                            
+  ^
+  5 errors
+  3 warnings
+
+* Try:
+> Check your code and dependencies to fix 
+the compilation error(s)
+> Run with --scan to get full insights.
+
+BUILD FAILED in 1s
+1 actionable task: 1 executed
+Configuration cache entry reused.
