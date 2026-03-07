@@ -46,6 +46,8 @@ public class RuneMobs extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RuneEffectListener(this), this);
         getServer().getPluginManager().registerEvents(new com.darkun7.runemobs.raids.RaidScrollListener(this), this);
         getServer().getPluginManager().registerEvents(new EnderDragonManager(this), this);
+        getServer().getPluginManager().registerEvents(new com.darkun7.runemobs.listeners.PartyDamageListener(this),
+                this);
 
         // Schedule periodic rune cleanup (every 10 seconds / 200 ticks)
         RuneCleanupTask cleanupTask = new RuneCleanupTask(this);

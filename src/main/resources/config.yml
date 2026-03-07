@@ -1,9 +1,9 @@
 # RuneMobs Configuration
-config-version: "240807-prod"
+config-version: "20260306-prod"
 rune_duration_minutes: 60 # Duration in minutes before an engraved rune decays
 
 auto_raid:
-  enabled: true
+  enabled: false
   interval_minutes: 60
   raid_id: "eikthyr"
 
@@ -50,6 +50,7 @@ rarities:
       min: 8
       max: 16
     rune_drop_chance: 1.0 # 100% chance for legendary to drop a Rune
+    raid_scroll_drop_chance: 0.4 # 40% chance to drop an Eikthyr summoning scroll
 
 ender_dragon:
   enabled: true
@@ -76,10 +77,10 @@ raids:
       1:
         - type: WOLF
           rarity: rare
-          amount: 5
+          amount: 2
           name: "&4Angry Wolf"
         - type: PIGLIN
-          rarity: epic
+          rarity: rare
           amount: 2
           name: "&4Orc"
           equipment:
@@ -88,27 +89,27 @@ raids:
             main_hand: CROSSBOW
       2:
         - type: WOLF
-          rarity: epic
-          amount: 6
+          rarity: rare
+          amount: 2
           name: "&4Angry Wolf"
         - type: PIGLIN
-          rarity: epic
-          amount: 3
+          rarity: rare
+          amount: 2
           name: "&4Orc"
       3:
         - type: PIGLIN
           rarity: epic
-          amount: 5
+          amount: 2
           name: "&4Orc"
         - type: WOLF
           rarity: epic
-          amount: 3
+          amount: 2
           name: "&4Angry Wolf"
       4:
         - type: PIGLIN
           rarity: epic
-          amount: 4
-          name: "&6Orc Rider"
+          amount: 2
+          name: "&4Orc Rider"
           baby: true
           mount: WOLF
           equipment:
@@ -116,7 +117,7 @@ raids:
             main_hand: STONE_AXE
         - type: PIGLIN
           rarity: epic
-          amount: 4
+          amount: 2
           name: "&4Orc"
           equipment:
             helmet: LEATHER_HELMET:BLACK
@@ -124,9 +125,10 @@ raids:
             main_hand: STONE_SWORD
       5:
         - type: PIGLIN_BRUTE
-          rarity: legendary
+          rarity: rare
           amount: 1
           name: "&6Orc Chieftain"
+          is_boss: true
           equipment:
             helmet: NETHERITE_HELMET
             chestplate: NETHERITE_CHESTPLATE

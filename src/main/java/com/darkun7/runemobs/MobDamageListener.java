@@ -224,7 +224,27 @@ public class MobDamageListener implements Listener {
             int dropAmount = random.nextInt((maxEmerald - minEmerald) + 1) + minEmerald;
 
             if (dropAmount > 0) {
-                event.getDrops().add(new ItemStack(Material.EMERALD, dropAmount));
+                org.bukkit.entity.Player killer = mob.getKiller();
+                if (killer != null && com.darkun7.runemobs.util.PartyHook.isInParty(killer)) {
+                    java.util.List<org.bukkit.entity.Player> partyMembers = new java.util.ArrayList<>();
+                    for (org.bukkit.entity.Player p : org.bukkit.Bukkit.getOnlinePlayers()) {
+                        if (p.getWorld().equals(mob.getWorld()) && p.getLocation().distance(mob.getLocation()) <= 50) {
+                            if (com.darkun7.runemobs.util.PartyHook.isInSameParty(killer, p)) {
+                                partyMembers.add(p);
+                            }
+                        }
+                    }
+                    if (!partyMembers.isEmpty()) {
+                        int perPlayer = Math.max(1, dropAmount / partyMembers.size());
+                        for (org.bukkit.entity.Player p : partyMembers) {
+                            p.getInventory().addItem(new ItemStack(Material.EMERALD, perPlayer));
+                        }
+                    } else {
+                        event.getDrops().add(new ItemStack(Material.EMERALD, dropAmount));
+                    }
+                } else {
+                    event.getDrops().add(new ItemStack(Material.EMERALD, dropAmount));
+                }
             }
 
             // Rune drops map specifically to legendary per config
@@ -233,7 +253,39 @@ public class MobDamageListener implements Listener {
                 if (random.nextDouble() <= runeChance) {
                     event.getDrops().add(RuneManager.createRandomRune());
                 }
+
+                // Drop an Eikthyr summoning scroll with configurable chance
+                double scrollChance = plugin.getConfig().getDouble("rarities.legendary.raid_scroll_drop_chance", 1.0);
+                if (random.nextDouble() <= scrollChance) {
+                    org.bukkit.entity.Player killer = mob.getKiller();
+                    if (killer != null && com.darkun7.runemobs.util.PartyHook.isInParty(killer)) {
+                        for (org.bukkit.entity.Player p : org.bukkit.Bukkit.getOnlinePlayers()) {
+                            if (com.darkun7.runemobs.util.PartyHook.isInSameParty(killer, p)) {
+                                p.sendMessage(
+                                        "§b[Party] §a" + killer.getName() + " obtained an Eikthyr Summoning Scroll!");
+                            }
+                        }
+                    }
+                    String raidId = plugin.getConfig().getString("auto_raid.raid_id", "eikthyr");
+                    org.bukkit.inventory.ItemStack scroll = new org.bukkit.inventory.ItemStack(
+                            org.bukkit.Material.PAPER);
+                    org.bukkit.inventory.meta.ItemMeta meta = scroll.getItemMeta();
+                    meta.setDisplayName(org.bukkit.ChatColor.GOLD + "Eikthyr Summoning Scroll");
+                    java.util.List<String> lore = new java.util.ArrayList<>();
+                    lore.add(org.bukkit.ChatColor.GRAY + "A dark parchment fallen from a legendary creature...");
+                    lore.add(org.bukkit.ChatColor.GRAY + "Right-click to summon the Army of Eikthyr!");
+                    lore.add("");
+                    lore.add(org.bukkit.ChatColor.DARK_RED + "Summons: " + org.bukkit.ChatColor.WHITE
+                            + "Army of Eikthyr");
+                    meta.setLore(lore);
+                    org.bukkit.persistence.PersistentDataContainer pdc = meta.getPersistentDataContainer();
+                    org.bukkit.NamespacedKey scrollKey = new org.bukkit.NamespacedKey(plugin, "chained_raid_trigger");
+                    pdc.set(scrollKey, org.bukkit.persistence.PersistentDataType.STRING, raidId);
+                    scroll.setItemMeta(meta);
+                    event.getDrops().add(scroll);
+                }
             }
+
         }
     }
 

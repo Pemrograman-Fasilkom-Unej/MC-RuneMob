@@ -413,10 +413,11 @@ public class RuneEffectListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
-            Player player = event.getPlayer();
-            ItemStack tool = player.getInventory().getItemInMainHand();
+        Player player = event.getPlayer();
+        Action action = event.getAction();
 
+        if (action == Action.LEFT_CLICK_BLOCK || action == Action.LEFT_CLICK_AIR) {
+            ItemStack tool = player.getInventory().getItemInMainHand();
             if (tool != null && tool.hasItemMeta()) {
                 NamespacedKey typeKey = new NamespacedKey(plugin, "rune_type");
                 String typeStr = tool.getItemMeta().getPersistentDataContainer().get(typeKey,
@@ -434,6 +435,36 @@ public class RuneEffectListener implements Listener {
                         long immunityExpiry = System.currentTimeMillis() + 5000;
                         player.getPersistentDataContainer().set(new NamespacedKey(plugin, "leap_immunity"),
                                 PersistentDataType.LONG, immunityExpiry);
+                    }
+                }
+            }
+        } else if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
+            if (player.isGliding()) {
+                ItemStack chestplate = player.getInventory().getChestplate();
+                if (chestplate != null && chestplate.getType() == Material.ELYTRA && chestplate.hasItemMeta()) {
+                    NamespacedKey typeKey = new NamespacedKey(plugin, "rune_type");
+                    if ("ASCENSION".equals(chestplate.getItemMeta().getPersistentDataContainer().get(typeKey,
+                            PersistentDataType.STRING))) {
+
+                        NamespacedKey cooldownKey = new NamespacedKey(plugin, "ascension_cooldown");
+                        long current = System.currentTimeMillis();
+                        long target = player.getPersistentDataContainer().getOrDefault(cooldownKey,
+                                PersistentDataType.LONG, 0L);
+
+                        if (current >= target) {
+                            player.setVelocity(player.getLocation().getDirection().normalize().multiply(1.5)
+                                    .add(new org.bukkit.util.Vector(0, 0.8, 0)));
+                            player.getWorld().playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_LAUNCH, 1.0f,
+                                    1.0f);
+                            player.getWorld().spawnParticle(org.bukkit.Particle.CLOUD, player.getLocation(), 20, 0.5,
+                                    0.5, 0.5, 0.1);
+                            player.getWorld().spawnParticle(org.bukkit.Particle.FLAME, player.getLocation(), 10, 0.2,
+                                    0.2, 0.2, 0.05);
+
+                            // 2.5 second cooldown (2500 ms)
+                            player.getPersistentDataContainer().set(cooldownKey, PersistentDataType.LONG,
+                                    current + 2500);
+                        }
                     }
                 }
             }

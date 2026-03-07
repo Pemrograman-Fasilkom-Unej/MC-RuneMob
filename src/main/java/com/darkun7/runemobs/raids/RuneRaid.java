@@ -394,6 +394,8 @@ public class RuneRaid {
         // Get boss death location
         Location bossLoc = mainBossEntity != null ? mainBossEntity.getLocation() : raidLocation;
 
+        boolean targetInParty = com.darkun7.runemobs.util.PartyHook.isInParty(target);
+
         // Find all nearby players (participants)
         int rewardedCount = 0;
         for (Player player : org.bukkit.Bukkit.getOnlinePlayers()) {
@@ -403,6 +405,18 @@ public class RuneRaid {
                 continue;
             if (player.getLocation().distance(bossLoc) > rewardRadius)
                 continue;
+
+            // Party Logic: If target is in a party, only reward party members. If not, only
+            // reward target.
+            if (targetInParty) {
+                if (!com.darkun7.runemobs.util.PartyHook.isInSameParty(target, player)) {
+                    continue; // Skip non-party members
+                }
+            } else {
+                if (!player.equals(target)) {
+                    continue; // Skip everyone else if target not in party
+                }
+            }
 
             // Give the rune
             org.bukkit.inventory.ItemStack rune = RuneManager.createRune(runeType);
